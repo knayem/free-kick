@@ -1,0 +1,28 @@
+#banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url("../../images/Untitled4.png");
+    height: 67vh;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .banner-text {
+    text-align: center;
+    color: #fff;
+  }
+  
+  .banner-text h1 {
+    font-size: 53px;
+    font-family: "Abril Fatface", cursive;
+    margin-bottom: 24px;
+  }
+  
+  .banner-text p {
+    max-width: 700px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
