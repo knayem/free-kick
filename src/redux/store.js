@@ -7,7 +7,9 @@ const initialStore={
 
 cartReducer :{
 
-cartItems : JSON.parse(localStorage.getItem('cartItems'))?? []
+cartItems : JSON.parse(localStorage.getItem('cartItems'))?? [],
+
+
 
 }
 

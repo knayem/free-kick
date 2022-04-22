@@ -62,7 +62,7 @@ const {name,price,catagory,type,imageURL,_id}=props.product
       />
       <CardMedia
         component="img"
-        height="135px"
+        height="150px"
         src={imageURL} 
         alt="Paella dish"
       />
@@ -71,11 +71,11 @@ const {name,price,catagory,type,imageURL,_id}=props.product
           {catagory}
         </Typography>
       </CardContent>
-      <CardContent>
+      {/* <CardContent>
         <Typography sx={{ color: 'success.dark', fontSize: 34, fontWeight: 'medium' }} variant="body2"  >
           {price}TK.
         </Typography>
-      </CardContent>
+      </CardContent> */}
      
      
     </Card>

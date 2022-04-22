@@ -1,7 +1,7 @@
 const initialState = {
 
-    cartItems: []
-
+    cartItems: [],
+   
 }
 
 
@@ -32,21 +32,65 @@ export const cartReducer = (state = initialState, action) => {
     
             }
 
-            // return {
-            //             ...state,
-            //              cartItems: [...state.cartItems, action.payload]
-        
-        
-            //          }
 
 
         }
 
-        case 'REMOVE_FROM_CART': {
+
+
+        case 'INCREMENT': {
+
+
+            const itemIndex = state.cartItems.findIndex(cartItem=>cartItem._id === action.payload._id)
+  
+            if (state.cartItems[ itemIndex].cartQty >=1) {
+  
+  
+            state.cartItems[ itemIndex ].cartQty +=1
+  
+         
+  
+            }
+           
+  
+  
+  
+          }
+          
+          
+  
+        case 'DECREMENT_CART': {
+  
+  
+            const itemIndex = state.cartItems.findIndex(cartItem=>cartItem._id === action.payload._id)
+  
+            if (state.cartItems[itemIndex].cartQty >1) {
+  
+  
+            state.cartItems[itemIndex].cartQty -=1
+  
+         
+  
+            }
+            
+        //     else if (state.cartItems[itemIndex].cartQty ==1){
+        //     const nxtCartitem = state.cartItems.filter(cartItem=>cartItem._id !== action.payload._id)
+                 
+        //    state.cartItems=nxtCartitem;
+        //     }
+            
+         
+  
+  
+          }
+
+
+
+         case 'REMOVE_FROM_CART': {
 
             return {
                 ...state,
-                cartItems: state.cartItems.filter(itm=>itm.id !== action.payload.id)
+                cartItems: state.cartItems.filter(itm=>itm._id !== action.payload._id)
 
 
             }
@@ -64,63 +108,52 @@ export const cartReducer = (state = initialState, action) => {
 
 
 
+// case 'INCREMENT': {
 
 
+//           const itemIndex = state.cartItems.findIndex(cartItem=>cartItem._id === action.payload._id)
+
+//           if (state.cartItems[ itemIndex].cartQty >=1) {
 
 
+//           state.cartItems[ alreadyAdded ].cartQty +=1
+
+       
+
+//           }
+//           else{
 
 
+//           }
 
 
-// const initialState ={ 
-
-// cartItems : []
-
-// }
-
-
-// export const cartReducer = (state= initialState, action) =>{
-
-// switch (action.type) {
-
-//   case 'ADD_TO_CART' :{
-
-
-//     const alreadyAdded =state.cartItems.find(item => item.id===action.payload.id);
-    
-//     if (alreadyAdded) {
-//         return{
-//             ...state
-
-//         }
-//     }
-
-//     else{
-
-//         return{
-
-//             ...state,
-//             cartItems: [...state.cartItems, action.payload]
-
-//         }
-
-//     }
-
-//   }
-
-//   case 'REMOVE_TO_CART' :{
-
-//          return{
-
-//             ...state,
-//             cartItems: state.cartItems.filter(item => item.id !== action.payload.id)
 
 //          }
 
-//   }
 
-//   default: return state
+//case 'RESTART_FROM_CART': {
+ //   return { ...state };
+ // }
 
-// }
+// case 'DECREMENT_CART': {
 
-// }
+
+//           const itemIndex = state.cartItems.findIndex(cartItem=>cartItem._id === action.payload._id)
+
+//           if (state.cartItems[itemIndex].cartQty >1) {
+
+
+//           state.cartItems[itemIndex].cartQty -=1
+
+       
+
+//           }
+//           else if (state.cartItems[itemIndex].cartQty ==1){
+//           const nxtCartitem = state.cartItems.filter(cartItem=>cartItem._id !== action.payload._id)
+               
+//          state.cartItems=nxtCartitem;
+//           }
+        
+
+
+//         }

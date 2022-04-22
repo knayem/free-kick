@@ -12,7 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Button } from '@mui/material';
+import { Button, FormControlLabel } from '@mui/material';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,14 +35,25 @@ const ProductDetails = () => {
    const dispatch= useDispatch();
 
 
+   const [quantity, setQuantity] = useState(1)
+  
+   const qtyPlus = () => {
+       setQuantity(Number(quantity) + 1)
+   }
+   const qtyMinus = () => {
+       if (quantity > 1) {
+           setQuantity(quantity - 1)
+       }
+   }
+   
   
 
 
-   const handleAddProduct = (product) => {
+   const handleAddProduct = (product,quantity) => {
 
-    dispatch({type: 'ADD_TO_CART', payload:product})
-    console.log('Product Added',product)
-
+    dispatch({type: 'ADD_TO_CART', payload:product,quantity})
+    //console.log('Product Added',product,quantity)
+    alert('Your Product Added')
 
 }
 
@@ -114,9 +125,21 @@ const ProductDetails = () => {
 
              
         
-          
-         
-             <InputLabel id="demo-simple-select-label"> Size Chart UK </InputLabel>
+             <Item>
+                 
+             <h2>Quantity</h2>
+                                        <div >
+                                            <Button style={{fontSize:"30px"}}  onClick={qtyMinus}>-</Button>
+
+                                            {quantity}
+                                            
+                                            <Button style={{fontSize:"30px"}} onClick={qtyPlus}>+</Button>
+                                        </div>
+                                  
+
+
+
+                                        <InputLabel id="demo-simple-select-label"> Size Chart UK </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -139,10 +162,19 @@ const ProductDetails = () => {
           
         </Select>
         
+    
+                 </Item>
+
+            
+
+            
+          
+         
+            
         
              </Item>
              <Item>
-             <Button variant="contained" disableElevation  onClick={() =>handleAddProduct(productDetails)} >
+             <Button variant="contained" disableElevation  onClick={() => handleAddProduct(productDetails,quantity)} >
   Add TO Cart <ShoppingCartTwoToneIcon/>
 </Button>
 
