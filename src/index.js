@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import {Provider} from 'react-redux';
 import {store} from '../src/redux/store'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <Provider store={store} >
     <App />

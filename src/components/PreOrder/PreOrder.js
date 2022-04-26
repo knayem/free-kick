@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './PreOrderSlider.css'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
  import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Button } from '@mui/material';
 
 const PreviousBtn = (props) => {
   console.log(props);
@@ -73,8 +74,8 @@ const  PreOrder  = () => {
 
 
   return (
-    <div style={{ margin: "30px" }} className="carousel">
-      <h1>Comming Up Next</h1>
+    <div style={{ margin: "30px",marginTop: "5%"}} className="carousel">
+      
       <Slider {...carouselProperties}>
         {preOrder.map((item) => (
           <Card item={item} />
@@ -86,7 +87,7 @@ const  PreOrder  = () => {
 
 const Card = ({ item }) => {
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center"}}>
       <img
         className="multi__image"
         src={item.image}
@@ -98,10 +99,8 @@ const Card = ({ item }) => {
           marginBottom: "10px",
         }}
       />
-      <h3 style={{ fontSize: "14px", padding: "5px 0" }}>TOP TRNDING {item.catagory} </h3>
-      <p style={{ fontSize: "16px", padding: "5px 0", color: "green" }}>
-      {item.cost}BDT
-      </p>
+
+      <button className="Button"> Pre-Order Now</button> {item.cost}BDT
       
     </div>
   );

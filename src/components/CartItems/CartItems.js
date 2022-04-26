@@ -1,53 +1,70 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Lottie from 'react-lottie';
 
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import ButtonBase from '@mui/material/ButtonBase';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
-import { Delete } from '@mui/icons-material';
-import { Button } from '@mui/material';
+import './CartItems.css'
 
 
+
+
+
+
+import {
+  Box,
+  Breadcrumbs,
+  Container,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  Table,
+  TableBody,
+  Button,
+} from "@mui/material";
+import Paper from "@mui/material/Paper";
+import { styled} from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+
+
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+
+import EditIcon from "@mui/icons-material/Edit";
+
+
+
+
+ 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
+    textAlign: "center",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
+    textAlign: "center",
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
+      
 
-
-
-const rows = [
- 
- 
-];
- 
 
 
 const CartItems = () => {
 
+  
     
     const { cartItems } = useSelector(state => state.cartReducer)
    
@@ -75,50 +92,104 @@ const CartItems = () => {
 
 
     return (
-        <div>
-            <h2>Your Order {cartItems.length} Items  </h2>
-
-
-
-
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 300 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Product</StyledTableCell>
-            <StyledTableCell align="right"> <h3>Catagory</h3></StyledTableCell>
-            <StyledTableCell align="right"><h4>Quantity</h4></StyledTableCell>
-            <StyledTableCell align="right"><h4>Price</h4></StyledTableCell>
-            <StyledTableCell align="right"><h4>Action</h4></StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {cartItems.map((cartItem) => (
-            <StyledTableRow key={cartItem._id}>
-              <StyledTableCell component="th" scope="row">
-                <h2>{cartItem.name} </h2>
-                {/* <img style={{width:"100px",height:"100px"}} src={product.imageURL}    /> */}
-              </StyledTableCell>
-              <StyledTableCell align="right"><h2>{cartItem.catagory}</h2></StyledTableCell>
-              <StyledTableCell align="right">   
-              
-              <Button variant="outlined" onClick={qtyPlus}  >  +   </Button> <h2>{qty}</h2> <Button variant="outlined" onClick={qtyMinus} >  -  </Button>
-              
-                </StyledTableCell>
-                
-              <StyledTableCell align="right"><h2>{cartItem.price * qty} (BDT)</h2></StyledTableCell>
-              <StyledTableCell align="right"> <Button variant="outlined" onClick={() => removeFromCart(cartItem)} > Remove</Button >  </StyledTableCell>
-              {/* <StyledTableCell align="right"> <Delete  onClick={() => removeFromCart(cartItem)} ></Delete>  </StyledTableCell> */}
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
+      <Box>
+      {/* Title Container */}
      
-    
-            
-        </div>
+
+      {/* Cart Table */}
+      <Box sx={{ py: 8 }}>
+        <Container>
+          {cartItems.length === 0 ? (
+            //   No Product Only Cart
+            <Box className="middleCart">
+              <LocalMallIcon
+                sx={{ color: "#FF7004", fontSize: "90px", mb: 1 }}
+              />
+              <Typography variant="h5">
+                There are no products in your cart!
+              </Typography>
+            </Box>
+          ) : (
+            //   Table Details
+            <Box>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                  {/* Table Head */}
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell>IMAGE</StyledTableCell>
+                      <StyledTableCell align="left">
+                        PRODUCT NAME
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        UNTIL PRICE
+                      </StyledTableCell>
+                      <StyledTableCell align="left">QTY</StyledTableCell>
+                      <StyledTableCell align="left">SUBTOTAL</StyledTableCell>
+                      <StyledTableCell align="left">ACTION</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  {/* Table Body */}
+                  {cartItems.map((product) => (
+                    <TableBody key={product._id}>
+                      <StyledTableRow>
+                        <StyledTableCell component="th" scope="row">
+                          {/* Image */}
+                          <img
+                            src={product.imageURL}
+                            alt=""
+                            width="150"
+                            height="100"
+                            objectFit="cover"
+                          />
+                        </StyledTableCell>
+                        {/* Title */}
+                        <StyledTableCell align="left">
+                          {product.name}
+                        </StyledTableCell>
+                        <StyledTableCell align="left">
+                          ${product.price}
+                        </StyledTableCell>
+                        <StyledTableCell align="left">
+                      
+                        </StyledTableCell>
+                        <StyledTableCell align="left">
+                          {product.price }
+                        </StyledTableCell>
+                        <StyledTableCell align="middle">
+                        
+                            <EditIcon sx={{ mr: 2, cursor: "pointer" }} />
+                         
+
+                          <CancelOutlinedIcon
+                            sx={{ cursor: "pointer" }}
+                           onClick={() =>removeFromCart(product)}
+                          />
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    </TableBody>
+                  ))}
+                  <tfoot>
+                    <tr sx={{ textAlign: "right" }}>
+                      <Typography sx={{ p: 2 }} variant="h2" className="title">
+                        Grand Total: ${3}.00
+                      </Typography>
+                    </tr>
+                  </tfoot>
+                </Table>
+              </TableContainer>
+              <Box className="checkout">
+                
+                  <Button className="checkoutBtn">
+                    PROCEED TO CHECKOUT
+                  </Button>
+               
+              </Box>
+            </Box>
+          )}
+        </Container>
+      </Box>
+    </Box>
     );
 };
 

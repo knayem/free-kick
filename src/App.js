@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { createContext, useState } from "react";
 import Home from './components/Home/Home';
 import Admin from './components/Admin/Admin'
 import ProductDetails from './components/ProductInfo/ProductDetails/ProductDetails'
@@ -10,12 +11,22 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Login from './components/Login/Login';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 ;
 
+export const UserContext = createContext();
 function App() {
+
+  const [loggedInUser, setLoggedInUser] = useState({});
+  console.log(loggedInUser);
+
+
+
+
   return (
     <div className="App">
-
+<UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
 <Router>
         <Switch>
           <Route exact path="/">
@@ -28,11 +39,14 @@ function App() {
            <ProductDetails></ProductDetails>
           </Route>
 
-          <Route path="/cart">
+          <PrivateRoute path="/cart">
             <CartItems></CartItems>
-          </Route>
+          </PrivateRoute>
           <Route path="/admin">
             <Admin></Admin>
+          </Route>
+          <Route path="/login">
+           <Login></Login>
           </Route>
           
          
@@ -41,7 +55,7 @@ function App() {
 
       </Router>
 
-    
+      </UserContext.Provider>
     </div>
   );
 }

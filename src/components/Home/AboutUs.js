@@ -25,9 +25,9 @@ const AboutUs = () => {
   const theme = useTheme();
 
     return (
-        <div>
+        <div style={{marginTop:'4%'}}>
 
-          <h1>WHY CHOSE US</h1>
+          <h3>WHY CHOSE US?</h3>
 
 <Box
       sx={{
@@ -118,133 +118,5 @@ export default AboutUs;
 
 
 
- {/* <div class="container">
 
-       
 
-        <div class="card">
-
-            <div class="slide slide1">
-
-                <div class="content">
-
-                    <div class="icon">
-
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="slide slide2">
-
-                <div class="content">
-
-                    <h3>
-
-                        Hello there!
-
-                    </h3>
-
-                    <p>Trust yourself and keep going.</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        
-
-    </div>
-     <div class="slide slide1">
-
-                <div class="content">
-
-                    <div class="icon">
-
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="slide slide2">
-
-                <div class="content">
-
-                    <h3>
-
-                        Hello there!
-
-                    </h3>
-
-                    <p>Trust yourself and keep going.</p>
-
-                </div>
-
-            </div>
-
-            <div class = "container">
-    <div class = "card">
-      <div class = "image">
-        <img href = "#" src = "https://i.pinimg.com/originals/a4/7b/a5/a47ba59b4a353e0928ef0551ca44f980.jpg"/>
-      </div>
-      <div class = "content">
-        <h3>This is content</h3>
-        <p>DIn publishing and graphic design,           Lorem ipsum is a placeholder text               commonly used to demonstrate the visual         form of a document or a typeface without         relying on meaningful content.</p>
-      </div>
-    </div>    
-  </div> */}
-
-{/* <div class="container">
-  <a class="card1" href="#">
-    <h3>This is option 1</h3>
-    <p class="small">Card description with lots of great facts and interesting details.</p>
-    <div class="go-corner" href="#">
-      <div class="go-arrow">
-        →
-      </div>
-    </div>
-  </a>
-  
-  <a class="card2" href="#">
-    <h3>This is option 2</h3>
-    <p class="small">Card description with lots of great facts and interesting details.</p>
-    
-    <div class="go-corner" href="#">
-      <div class="go-arrow">
-        →
-      </div>
-    </div>
-  </a>
-  
-  <a class="card3" href="#">
-    <h3>This is option 3</h3>
-    <p class="small">Card description with lots of great facts and interesting details.</p>
-    <div class="dimmer"></div>
-    <div class="go-corner" href="#">
-      <div class="go-arrow">
-        →
-      </div>
-    </div>
-  </a>
-  
-  <a class="card4" href="#">
-    
-
-    <h3>This is option 4</h3>
-    <p class="small">Card description with lots of great facts and interesting details.</p>
-    <div class="dimmer"></div>
-    <div class="go-corner" href="#">
-      <div class="go-arrow">
-        →
-      </div>
-    </div>
-  </a>
-  
-</div> */}

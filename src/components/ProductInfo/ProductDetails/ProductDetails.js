@@ -91,7 +91,7 @@ const ProductDetails = () => {
          <Box sx={{ flexGrow: 1 ,
             display: 'flex',
             flexWrap: 'wrap',}}>
-              <Link  to='/home'> <Button style={{ marginLeft: '100px' }}  variant="text" endIcon={<SendIcon />}> <h1> Back </h1> </Button> </Link>
+              <Link  to='/home'> <Button style={{ marginLeft: '100px' }}  variant="text" endIcon={<SendIcon />}> <h3> Back </h3> </Button> </Link>
                 
              
 
@@ -110,7 +110,7 @@ const ProductDetails = () => {
            >
              <Item>
                  
-             <img style={{ width:"70%"}} src={productDetails.imageURL} alt="" className="img-fluid" />
+             <img style={{ width:"65%"}} src={productDetails.imageURL} alt="" className="img-fluid" />
 
              </Item>
            </Grid>
@@ -120,12 +120,14 @@ const ProductDetails = () => {
              <Item>
 
              <h1> {productDetails.name} </h1>    
-             <h1> {productDetails.catagory} </h1>    
-             <h1> {productDetails.price} (BDT)</h1>
+             <h4> {productDetails.catagory} </h4>   
+             <br></br>
+<p > {productDetails.description}  </p> 
+             <h4> {productDetails.price} (BDT)</h4>
 
              
         
-             <Item>
+             {/* <Item>
                  
              <h2>Quantity</h2>
                                         <div >
@@ -163,7 +165,7 @@ const ProductDetails = () => {
         </Select>
         
     
-                 </Item>
+                 </Item> */}
 
             
 
@@ -178,8 +180,7 @@ const ProductDetails = () => {
   Add TO Cart <ShoppingCartTwoToneIcon/>
 </Button>
 
-<br></br>
-<h3 > {productDetails.description}  </h3>
+<br></br><br></br><br></br>
              </Item>
            </Grid>
           

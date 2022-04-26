@@ -9,7 +9,7 @@ const Admin = () => {
             <h1>Welcome Admin</h1>
 
           <AddProducts></AddProducts> 
-        <ManageInventory></ManageInventory>
+        
 
             
             

@@ -42,14 +42,14 @@ const Product = () => {
 
 
     return (
-        <div className="about">
-          <h1>FEATURED PRODUCTS</h1>
+        <div style={{ marginTop: '8%' }}>  
+          <h3>FEATURED PRODUCTS</h3>
            
           <ButtonGroup variant="text" aria-label="text button group">
-  <Button onClick={() => (setCtg( 'National') || setCtg( 'Club' )) }> <h4>Club Jersey</h4></Button>
-  <Button onClick={() => setCtg('National') }> <h4>National Jersey</h4></Button>
-  <Button onClick={() => setCtg('Football') } > <h4> Football</h4></Button>
-  <Button onClick={() => setCtg('Football Boot') }> <h4>Football Boot</h4></Button>
+  <Button onClick={() => (setCtg( 'National') || setCtg( 'Club' )) }> <h6>Club Jersey</h6></Button>
+  <Button onClick={() => setCtg('National') }> <h6>National Jersey</h6></Button>
+  <Button onClick={() => setCtg('Football') } > <h6> Football</h6></Button>
+  <Button onClick={() => setCtg('Football Boot') }> <h6>Football Boot</h6></Button>
   
 </ButtonGroup>
 

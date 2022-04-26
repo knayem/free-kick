@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Grid, Input,Item } from '@mui/material';
-
+import ManageInventory from './ManageInventory'
 
 
 const AddProducts = () => {
@@ -70,10 +70,10 @@ const AddProducts = () => {
 
 <Grid container spacing={2}>
   
-  <Grid item xs={4}>
-    xs=4
+  <Grid item xs={6}>
+    <ManageInventory></ManageInventory>
   </Grid>
-  <Grid item xs={8}>
+  <Grid item xs={6}>
     <h3>Pleace Add Home Product</h3>
 
     <form  class=" mt-5"  onSubmit={handleSubmit(onSubmit)}  sx={{ flexDirection: 'column',mr:''}}>
