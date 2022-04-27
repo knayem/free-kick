@@ -1,0 +1,5 @@
+.disabledBtn:disabled {
+    border: 3px solid red;
+    cursor: not-allowed;
+    background-color: #10b98149;
+  }

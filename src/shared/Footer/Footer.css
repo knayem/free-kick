@@ -1,9 +1,11 @@
-.container {
+.footerContainer {
+    width: 100vw !important;
     background-color:black;
     color: white;
-    padding: 30px;
-    display: flex;
-    margin-top: 10%;
+  display: flex;
+  padding:30px;
+ margin-top:10%
+
 }
 
 .footerItem {

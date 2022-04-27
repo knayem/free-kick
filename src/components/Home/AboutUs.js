@@ -25,10 +25,10 @@ const AboutUs = () => {
   const theme = useTheme();
 
     return (
-        <div style={{marginTop:'4%'}}>
+        <div style={{marginTop:'4%', textAlign: 'center'}}>
 
           <h3>WHY CHOSE US?</h3>
-
+        
 <Box
       sx={{
         display: 'flex',
@@ -43,6 +43,8 @@ const AboutUs = () => {
        
       }}
     >
+
+    
        
        <Card sx={{ display: 'flex' }} >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>

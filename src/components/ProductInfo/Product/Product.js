@@ -42,7 +42,7 @@ const Product = () => {
 
 
     return (
-        <div style={{ marginTop: '8%' }}>  
+        <div style={{ marginTop: '8%'  , textAlign: 'center'}}>  
           <h3>FEATURED PRODUCTS</h3>
            
           <ButtonGroup variant="text" aria-label="text button group">

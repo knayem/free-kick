@@ -16,7 +16,7 @@ import { Button, FormControlLabel } from '@mui/material';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
-
+import '../productStyle.css'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -29,7 +29,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ProductDetails = () => {
 
-   
+   const [isDisable,setIsDisable] = useState(false);
    const {cartItems}= useSelector(state => state.cartReducer)
 
    const dispatch= useDispatch();
@@ -52,6 +52,7 @@ const ProductDetails = () => {
    const handleAddProduct = (product,quantity) => {
 
     dispatch({type: 'ADD_TO_CART', payload:product,quantity})
+    setIsDisable(true);
     //console.log('Product Added',product,quantity)
     alert('Your Product Added')
 
@@ -76,7 +77,7 @@ const ProductDetails = () => {
         .then(data =>{
      
             setProductDetails(data);
-         
+            
         })
         .catch(err => console.log(err))
      
@@ -176,8 +177,8 @@ const ProductDetails = () => {
         
              </Item>
              <Item>
-             <Button variant="contained" disableElevation  onClick={() => handleAddProduct(productDetails,quantity)} >
-  Add TO Cart <ShoppingCartTwoToneIcon/>
+             <Button className="disabledBtn" variant="contained" disableElevation  disabled={isDisable} onClick={() => handleAddProduct(productDetails,quantity)} >
+  { !isDisable ? 'Add TO Cart' : 'Added TO Cart'}  <ShoppingCartTwoToneIcon/>
 </Button>
 
 <br></br><br></br><br></br>

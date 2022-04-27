@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import Login from './components/Login/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Shippment from './components/shippment/Shippment/Shippment';
 ;
 
 export const UserContext = createContext();
@@ -25,7 +26,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div >
 <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
 <Router>
         <Switch>
@@ -42,6 +43,7 @@ function App() {
           <PrivateRoute path="/cart">
             <CartItems></CartItems>
           </PrivateRoute>
+          
           <Route path="/admin">
             <Admin></Admin>
           </Route>

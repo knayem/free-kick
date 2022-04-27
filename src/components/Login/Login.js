@@ -51,7 +51,7 @@ const Login = () => {
         
         email: '',
         password: '',
-        ConfirmPassword: ''
+        
     })
     const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -98,12 +98,7 @@ const Login = () => {
             const isPasswordValid = e.target.value.length > 6;
             const passwordHasNumber = /\d{1}/.test(e.target.value);
             isFieldValid = isPasswordValid && passwordHasNumber;
-            // if(isFieldValid) {
-            //     var password.value === confirmPassword;
-            // }
-            // else{
-            //     alert('password dose match');
-            // }
+           
         }
         if (e.target.name === 'ConfirmPassword' ) {
             var confirmPassword = e.target.value;
@@ -117,78 +112,84 @@ const Login = () => {
 
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
+
+             console.log(e.target.value)
+
             setUser(newUserInfo);
         }
 
     }
     const handleSubmit = (e) => {
+      console.log(user.email, user.password)
+      console.log(newUser)
+      //if  (newUser )
+
+      if  (newUser && user.email && user.password) {
         console.log(user.email, user.password)
+          firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+              .then(res => {
 
-        if (newUser && user.name && user.password) {
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-                .then(res => {
+                  const newUserInfo = { ...res.user };
 
-                    const newUserInfo = { ...res.user };
+                  newUserInfo.error = '';
+                  newUserInfo.success = true;
+                  setUser(newUserInfo);
+                  setLoggedInUser(newUserInfo);
+                  updateUserName(user.name);
+                  history.replace(from);
+              })
+              .catch(error => {
 
-                    newUserInfo.error = '';
-                    newUserInfo.success = true;
-                    setUser(newUserInfo);
-                    setLoggedInUser(newUserInfo);
-                    updateUserName(user.name);
-                    history.replace(from);
-                })
-                .catch(error => {
+                  const newUserInfo = { ...user };
 
-                    const newUserInfo = { ...user };
+                  newUserInfo.error = error.message;
+                  newUserInfo.success = false;
+                  setUser(newUserInfo);
 
-                    newUserInfo.error = error.message;
-                    newUserInfo.success = false;
-                    setUser(newUserInfo);
+              });
 
-                });
+      }
 
-        }
+      if (!newUser && user.email && user.password) {
+          firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+              .then(res => {
 
-        if (!newUser && user.email && user.password) {
-            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-                .then(res => {
+                  const newUserInfo = { ...res.user };
 
-                    const newUserInfo = { ...res.user };
-
-                    newUserInfo.error = '';
-                    newUserInfo.success = true;
-                    setUser(newUserInfo);
-                    setLoggedInUser(newUserInfo);
-                    history.replace(from);
-                    console.log('sign in user info', res.user);
+                  newUserInfo.error = '';
+                  newUserInfo.success = true;
+                  setUser(newUserInfo);
+                  setLoggedInUser(newUserInfo);
+                  history.replace(from);
+                  console.log('sign in user info', res.user);
 
 
-                })
-                .catch((error) => {
-                    const newUserInfo = { ...user };
+              })
+              .catch((error) => {
+                  const newUserInfo = { ...user };
 
-                    newUserInfo.error = error.message;
-                    newUserInfo.success = false;
-                    setUser(newUserInfo);
-                });
+                  newUserInfo.error = error.message;
+                  newUserInfo.success = false;
+                  setUser(newUserInfo);
+              });
 
-        }
+      }
 
-        e.preventDefault();
-    }
-    const updateUserName = name => {
-        const user = firebase.auth().currentUser;
-        user.updateProfile({
-            displayName: name
-        }).then(function () {
+      e.preventDefault();
+  }
+  const updateUserName = name => {
+      const user = firebase.auth().currentUser;
+      user.updateProfile({
+          displayName: name
+      }).then(function () {
 
-            console.log('User Updated successfully')
-        }).catch(function (error) {
+          console.log('User Updated successfully')
+      }).catch(function (error) {
 
-            console.log(error)
-        });
+          console.log(error)
+      });
 
-    }
+  }
 
     return (
 
@@ -227,6 +228,7 @@ const Login = () => {
                
                 <Grid item xs={12}>
                   <TextField
+                  onBlur={handleBlur}
                     required
                     fullWidth
                     id="email"
@@ -237,6 +239,7 @@ const Login = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                  onBlur={handleBlur}
                     required
                     fullWidth
                     name="password"
@@ -270,74 +273,7 @@ const Login = () => {
               </Button>
         </Container>
   
-        
-//              <div style={{  width:'700px' ,marginLeft:'20%'} }  >
-
-
-
-// <h2  style={{ color: 'black',marginTop: '20%' ,textAlign:'center' ,fontSize:'40px' }}>𝙇𝙤𝙜𝙞𝙣 𝘼𝙘𝙘𝙤𝙪𝙣𝙩</h2>
-//     <Container class="mt-5 d-flex " style={{marginLeft:'10%'}} >
-// <Row>
-
-// <Col class="md-5">
-
-
-// <form  style={{backgroundColor:'whiteSmoke'}} onSubmit={handleSubmit} >
-//   <div class="form-group">
-//   { newUser && <label for="exampleInputEmail1">Email address</label> &&  <input type="text" id="login" class="form-control" onBlur={handleBlur} name="name" placeholder="Input Name" required /> }
-    
-//     <TextField id="outlined-basic" type="email" class="form-control"  placeholder="Enter email"/>
-//   </div>
-//   <div class="form-group">
-//     <label for="exampleInputPassword1">Password</label>
-//     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
-//   </div>
-//   <div class="form-check">
-//   <br></br>
-//    {/* {newUser && <input id="password" class="fadeIn third" type="password" onBlur={handleBlur} name="ConfirmPassword" placeholder="confirmPassword" />} */}
-//                <input  style={{ marginLeft:'14%',width:'130px'}}  type="submit" class="btn btn-primary" value={newUser ? 'Sign Up' : 'Sign In'} />
-//   </div>
-  
-// </form >
-//          <input style={{ marginLeft:'20%'}} type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
-//              <label style={{ color: 'green' }} htmlFor="newUser">New User Sign up </label>
  
- 
-//              <p style={{ color: 'red' }}>{user.error}</p>
-//              {user.success && <p style={{ color: 'green' }}> User {newUser ? 'create' : 'Logged In'} Success </p>}
-
-//              <br></br>
-             
-//              <p style={{ marginLeft:'25%'}}>Or sign with</p>
-//             < Button style={{ marginLeft:'12%'}}  class="fadeIn fourth" onClick={handleGoogleSignIn} variant="success">  <FontAwesomeIcon icon={faCoffee} /> Sign In With Google</Button>
-
-            
-// </Col>
-
-// <Col class="md-5" style={{backgroundColor:'orange'}} >
-
-//         <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_q5pk6p1k.json" 
-//             background="transparent" 
-//                 speed="1" 
-//                 style={{width: '400px', height: '400px'}} 
-//                 loop 
-//                 autoplay>
-//         </lottie-player>
-
-
-
-       
-
-
-// </Col>
-
-// </Row>
-
-
-//     </Container>
-
-//              </div>
-
       
     );
 };
